@@ -1,0 +1,28 @@
+<h1>New Game:</h1>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div id="letters-container" class="d-flex flex-wrap mb-4">
+      <% @letters.each do |letter| %>
+        <div class="letter-box">
+          <%= letter %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="row justify-content">
+    <form action="/score" method="post" data-turbo="false" id="word-form" class="col-md-6">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag :original_grid, @letters.join(',') %>
+
+      <div class="input-group mb-3">
+        <input type="word" name="word" class="form-control" placeholder="Your Longest Word">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
